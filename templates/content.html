@@ -1,0 +1,47 @@
+{{define "content"}}
+<header class="flex items-center space-x-6 mb-8">
+    <!-- Profile Image (now square and larger) -->
+    <img src="https://via.placeholder.com/250" alt="Profile" class="w-64 h-64 rounded-md object-cover">
+
+    <!-- Personal Info -->
+    <div>
+        <h1 class="text-3xl font-bold">Your Name</h1>
+        <p class="text-gray-600">Web Developer | Blogger | Designer</p>
+    </div>
+</header>
+
+<!-- Personal content section -->
+<section class="mb-8">
+    <h2 class="text-2xl font-bold mb-4">My Personal Blog Content</h2>
+    <p class="text-gray-700">This is a section where you can write your own content. You can describe your journey, share insights, or provide updates about your projects. Feel free to customize this section with whatever content you want to showcase before your blog post submission form.</p>
+</section>
+
+<!-- Blog submission form -->
+<section class="space-y-6">
+    <h2 class="text-2xl font-bold mb-4">Submit a New Blog Post</h2>
+    <form action="/submit" method="POST" class="space-y-4">
+        <div>
+            <label for="title" class="block text-lg">Title</label>
+            <input type="text" name="title" id="title" required class="w-full p-2 border border-gray-300 rounded-md">
+        </div>
+        <div>
+            <label for="content" class="block text-lg">Content</label>
+            <textarea name="content" id="content" rows="5" required class="w-full p-2 border border-gray-300 rounded-md"></textarea>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Submit</button>
+    </form>
+
+    <!-- Display blog posts -->
+    <div class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">Blog Posts</h2>
+        {{range .Posts}}
+        <article class="bg-gray-100 p-4 rounded-md mb-4">
+            <h3 class="text-xl font-semibold">{{.Title}}</h3>
+            <p class="text-gray-700 mt-2">{{.Content}}</p>
+        </article>
+        {{else}}
+        <p>No posts yet. Be the first to submit a post!</p>
+        {{end}}
+    </div>
+</section>
+{{end}}
